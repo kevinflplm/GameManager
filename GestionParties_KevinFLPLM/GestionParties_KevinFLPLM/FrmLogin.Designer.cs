@@ -76,7 +76,7 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Gadugi", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLogin.Location = new System.Drawing.Point(155, 9);
+            this.lblLogin.Location = new System.Drawing.Point(160, 9);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(123, 21);
             this.lblLogin.TabIndex = 4;
@@ -84,10 +84,11 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(179, 166);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConnect.Location = new System.Drawing.Point(170, 176);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(98, 24);
+            this.btnConnect.Size = new System.Drawing.Size(130, 30);
             this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "Se connecter";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -95,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(209, 196);
+            this.label2.Location = new System.Drawing.Point(218, 218);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 15);
             this.label2.TabIndex = 6;
@@ -104,7 +105,7 @@
             // llbConnexion
             // 
             this.llbConnexion.AutoSize = true;
-            this.llbConnexion.Location = new System.Drawing.Point(360, 196);
+            this.llbConnexion.Location = new System.Drawing.Point(369, 218);
             this.llbConnexion.Name = "llbConnexion";
             this.llbConnexion.Size = new System.Drawing.Size(85, 15);
             this.llbConnexion.TabIndex = 7;
@@ -116,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 220);
+            this.ClientSize = new System.Drawing.Size(457, 242);
             this.Controls.Add(this.llbConnexion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnConnect);

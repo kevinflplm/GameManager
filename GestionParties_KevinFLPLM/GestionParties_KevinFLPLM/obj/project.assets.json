@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
       "projectName": "GestionParties_KevinFLPLM",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
