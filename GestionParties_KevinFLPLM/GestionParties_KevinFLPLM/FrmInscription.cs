@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Page d'inscription
+
 namespace GestionParties_KevinFLPLM
 {
     public partial class FrmInscription : Form

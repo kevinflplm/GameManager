@@ -2,6 +2,12 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Data.SqlClient;
 
+
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Page de connexion
+
 namespace GestionParties_KevinFLPLM
 {
     public partial class FrmLogin : Form
@@ -20,7 +26,7 @@ namespace GestionParties_KevinFLPLM
 
         private void llbConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FrmInscription frm = new FrmInscription();
+            FrmGstnUtilisateurs frm = new FrmGstnUtilisateurs();
             frm.Show();
             this.Hide();
         }

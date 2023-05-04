@@ -12,6 +12,12 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Net.Mime.MediaTypeNames;
 using Image = System.Drawing.Image;
 
+
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Page d'accueil
+
 namespace GestionParties_KevinFLPLM
 {
     public partial class FrmAccueil : Form

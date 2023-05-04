@@ -51,3 +51,4 @@ C:\Users\Admin\Documents\GameManager\GestionParties_KevinFLPLM\GestionParties_Ke
 C:\Users\Admin\Documents\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Admin\Documents\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.csproj.CopyComplete
 C:\Users\Admin\Documents\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.FrmAccueil.resources
+C:\Users\Admin\Documents\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.FrmGstnUtilisateurs.resources
