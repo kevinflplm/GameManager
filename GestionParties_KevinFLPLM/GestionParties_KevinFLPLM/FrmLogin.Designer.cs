@@ -31,7 +31,7 @@
             this.tbxPseudo = new System.Windows.Forms.TextBox();
             this.lblPseudo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbxMdp = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -65,12 +65,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Mot de passe:";
             // 
-            // textBox1
+            // tbxMdp
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 136);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(289, 23);
-            this.textBox1.TabIndex = 2;
+            this.tbxMdp.Location = new System.Drawing.Point(83, 136);
+            this.tbxMdp.Name = "tbxMdp";
+            this.tbxMdp.Size = new System.Drawing.Size(289, 23);
+            this.tbxMdp.TabIndex = 2;
+            this.tbxMdp.UseSystemPasswordChar = true;
             // 
             // lblLogin
             // 
@@ -92,6 +93,7 @@
             this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "Se connecter";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // label2
             // 
@@ -117,17 +119,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(457, 242);
             this.Controls.Add(this.llbConnexion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbxMdp);
             this.Controls.Add(this.lblPseudo);
             this.Controls.Add(this.tbxPseudo);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmLogin";
-            this.Text = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Connexion";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,7 +146,7 @@
         private TextBox tbxPseudo;
         private Label lblPseudo;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox tbxMdp;
         private Label lblLogin;
         private Button btnConnect;
         private Label label2;

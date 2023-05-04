@@ -53,7 +53,7 @@
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(130, 30);
             this.btnConnect.TabIndex = 11;
-            this.btnConnect.Text = "Se connecter";
+            this.btnConnect.Text = "S\'inscrire";
             this.btnConnect.UseVisualStyleBackColor = true;
             // 
             // lblLogin
@@ -167,6 +167,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(289, 23);
             this.textBox3.TabIndex = 20;
+            this.textBox3.UseSystemPasswordChar = true;
             // 
             // llbConnexion
             // 
@@ -183,6 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(454, 402);
             this.Controls.Add(this.llbConnexion);
             this.Controls.Add(this.label3);
@@ -199,9 +201,12 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblPseudo);
             this.Controls.Add(this.tbxPseudo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "FrmInscription";
-            this.Text = "FrmInscription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Inscription";
             this.ResumeLayout(false);
             this.PerformLayout();
 

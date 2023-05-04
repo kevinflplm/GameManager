@@ -21,7 +21,7 @@ namespace GestionParties_KevinFLPLM
         {
             FrmLogin frm = new FrmLogin();
             frm.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }
