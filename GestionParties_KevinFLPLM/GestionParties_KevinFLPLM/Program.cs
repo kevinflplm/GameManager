@@ -1,17 +1,39 @@
+using GestionParties_KevinFLPLM;
+using Microsoft.VisualBasic.ApplicationServices;
+using Org.BouncyCastle.Crypto.Tls;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+
 namespace GestionParties_KevinFLPLM
 {
-    internal static class Program
+    static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+
+        public static bool IsUserLoggedIn { get; set; } = false;
+        public static List<Utilisateur>? UserInformation { get; set; }
+
+        public static List<string>? users { get; set; }
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new FrmLogin());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            users = new List<string>();
+            users.Add("aa");
+
+            // Afficher le formulaire de connexion (login)
+            FrmLogin loginForm = new FrmLogin();
+            Application.Run(loginForm);
+
+            // Vérifier l'état de connexion après la fermeture du formulaire de connexion
+            if (IsUserLoggedIn)
+            {
+                FrmAccueil frmAccueil = new FrmAccueil();
+                Application.Run(frmAccueil);
+            }
         }
     }
 }

@@ -22,16 +22,33 @@ namespace GestionParties_KevinFLPLM
 {
     public partial class FrmAccueil : Form
     {
-
-        //Database db = new Database();
+        List<Utilisateur> listUtilisateurs = new List<Utilisateur>();
+        Database db = new Database();
 
         public FrmAccueil()
         {
             InitializeComponent();
+
+            if (Program.IsUserLoggedIn)
+            {
+                // Accéder aux informations de l'utilisateur connecté
+                listUtilisateurs = Program.UserInformation;
+            }
         }
 
         private void FrmAccueil_Load(object sender, EventArgs e)
         {
+
+            foreach (Utilisateur utilisateur in listUtilisateurs)
+            {
+                   if (utilisateur.Role == "admin")
+                {
+
+                    btnAdmin.Visible = true;
+
+                }
+            }
+
             MySqlConnection mySqlConnection = new MySqlConnection("server=localhost;port=3306;database=gestion_parties;username=root;pwd=Super");
             mySqlConnection.Open();
 
@@ -63,6 +80,9 @@ namespace GestionParties_KevinFLPLM
             // Fermeture de la connexion à la base de données
             reader.Close();
             mySqlConnection.Close();
+
+
         }
     }
 }
+            

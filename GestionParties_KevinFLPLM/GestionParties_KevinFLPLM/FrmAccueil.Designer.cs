@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAdmin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -41,11 +42,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Évènements à venir";
             // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAdmin.Location = new System.Drawing.Point(941, 12);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(111, 38);
+            this.btnAdmin.TabIndex = 1;
+            this.btnAdmin.Text = "Admin";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Visible = false;
+            // 
             // FrmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 632);
+            this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.label1);
             this.Name = "FrmAccueil";
             this.Text = "FrmAccueil";
@@ -59,5 +72,6 @@
 
         private Label label1;
         private PictureBox pibTest;
+        private Button btnAdmin;
     }
 }

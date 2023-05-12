@@ -31,17 +31,17 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.lblLogin = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbxPrenom = new System.Windows.Forms.TextBox();
             this.lblPseudo = new System.Windows.Forms.Label();
-            this.tbxPseudo = new System.Windows.Forms.TextBox();
+            this.tbxNom = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbxNumTel = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbxEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbxPseudo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbxMdp = new System.Windows.Forms.TextBox();
             this.llbConnexion = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -55,6 +55,7 @@
             this.btnConnect.TabIndex = 11;
             this.btnConnect.Text = "S\'inscrire";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // lblLogin
             // 
@@ -76,12 +77,12 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Prénom:";
             // 
-            // textBox1
+            // tbxPrenom
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(289, 23);
-            this.textBox1.TabIndex = 8;
+            this.tbxPrenom.Location = new System.Drawing.Point(84, 115);
+            this.tbxPrenom.Name = "tbxPrenom";
+            this.tbxPrenom.Size = new System.Drawing.Size(289, 23);
+            this.tbxPrenom.TabIndex = 8;
             // 
             // lblPseudo
             // 
@@ -93,12 +94,12 @@
             this.lblPseudo.TabIndex = 7;
             this.lblPseudo.Text = "Nom: ";
             // 
-            // tbxPseudo
+            // tbxNom
             // 
-            this.tbxPseudo.Location = new System.Drawing.Point(84, 64);
-            this.tbxPseudo.Name = "tbxPseudo";
-            this.tbxPseudo.Size = new System.Drawing.Size(289, 23);
-            this.tbxPseudo.TabIndex = 6;
+            this.tbxNom.Location = new System.Drawing.Point(84, 64);
+            this.tbxNom.Name = "tbxNom";
+            this.tbxNom.Size = new System.Drawing.Size(289, 23);
+            this.tbxNom.TabIndex = 6;
             // 
             // label2
             // 
@@ -110,12 +111,12 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "Numéro de téléphone:";
             // 
-            // textBox2
+            // tbxNumTel
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 269);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(289, 23);
-            this.textBox2.TabIndex = 14;
+            this.tbxNumTel.Location = new System.Drawing.Point(84, 269);
+            this.tbxNumTel.Name = "tbxNumTel";
+            this.tbxNumTel.Size = new System.Drawing.Size(289, 23);
+            this.tbxNumTel.TabIndex = 14;
             // 
             // label4
             // 
@@ -127,12 +128,12 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "Email:";
             // 
-            // textBox4
+            // tbxEmail
             // 
-            this.textBox4.Location = new System.Drawing.Point(84, 215);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(289, 23);
-            this.textBox4.TabIndex = 18;
+            this.tbxEmail.Location = new System.Drawing.Point(84, 215);
+            this.tbxEmail.Name = "tbxEmail";
+            this.tbxEmail.Size = new System.Drawing.Size(289, 23);
+            this.tbxEmail.TabIndex = 18;
             // 
             // label5
             // 
@@ -144,12 +145,12 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Pseudo: ";
             // 
-            // textBox5
+            // tbxPseudo
             // 
-            this.textBox5.Location = new System.Drawing.Point(84, 165);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(289, 23);
-            this.textBox5.TabIndex = 16;
+            this.tbxPseudo.Location = new System.Drawing.Point(84, 165);
+            this.tbxPseudo.Name = "tbxPseudo";
+            this.tbxPseudo.Size = new System.Drawing.Size(289, 23);
+            this.tbxPseudo.TabIndex = 16;
             // 
             // label3
             // 
@@ -161,13 +162,13 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Mot de passe:";
             // 
-            // textBox3
+            // tbxMdp
             // 
-            this.textBox3.Location = new System.Drawing.Point(84, 327);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(289, 23);
-            this.textBox3.TabIndex = 20;
-            this.textBox3.UseSystemPasswordChar = true;
+            this.tbxMdp.Location = new System.Drawing.Point(84, 327);
+            this.tbxMdp.Name = "tbxMdp";
+            this.tbxMdp.Size = new System.Drawing.Size(289, 23);
+            this.tbxMdp.TabIndex = 20;
+            this.tbxMdp.UseSystemPasswordChar = true;
             // 
             // llbConnexion
             // 
@@ -188,19 +189,19 @@
             this.ClientSize = new System.Drawing.Size(454, 402);
             this.Controls.Add(this.llbConnexion);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tbxMdp);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.tbxEmail);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.tbxPseudo);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbxNumTel);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbxPrenom);
             this.Controls.Add(this.lblPseudo);
-            this.Controls.Add(this.tbxPseudo);
+            this.Controls.Add(this.tbxNom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -217,17 +218,17 @@
         private Button btnConnect;
         private Label lblLogin;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox tbxPrenom;
         private Label lblPseudo;
-        private TextBox tbxPseudo;
+        private TextBox tbxNom;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox tbxNumTel;
         private Label label4;
-        private TextBox textBox4;
+        private TextBox tbxEmail;
         private Label label5;
-        private TextBox textBox5;
+        private TextBox tbxPseudo;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox tbxMdp;
         private LinkLabel llbConnexion;
     }
 }
