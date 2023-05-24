@@ -28,44 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAdmin = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            btnAdmin = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Gadugi", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(402, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(262, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Évènements à venir";
+            label1.AutoSize = true;
+            label1.Font = new Font("Gadugi", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(402, 86);
+            label1.Name = "label1";
+            label1.Size = new Size(262, 32);
+            label1.TabIndex = 0;
+            label1.Text = "Évènements à venir";
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdmin.Location = new System.Drawing.Point(941, 12);
-            this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(111, 38);
-            this.btnAdmin.TabIndex = 1;
-            this.btnAdmin.Text = "Admin";
-            this.btnAdmin.UseVisualStyleBackColor = true;
-            this.btnAdmin.Visible = false;
+            btnAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAdmin.Location = new Point(941, 12);
+            btnAdmin.Name = "btnAdmin";
+            btnAdmin.Size = new Size(111, 38);
+            btnAdmin.TabIndex = 1;
+            btnAdmin.Text = "Admin";
+            btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.Visible = false;
+            btnAdmin.Click += btnAdmin_Click;
             // 
             // FrmAccueil
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 632);
-            this.Controls.Add(this.btnAdmin);
-            this.Controls.Add(this.label1);
-            this.Name = "FrmAccueil";
-            this.Text = "FrmAccueil";
-            this.Load += new System.EventHandler(this.FrmAccueil_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1064, 632);
+            Controls.Add(btnAdmin);
+            Controls.Add(label1);
+            Name = "FrmAccueil";
+            Text = "FrmAccueil";
+            Load += FrmAccueil_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

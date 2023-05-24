@@ -10,12 +10,6 @@ PO: Yves Juillerat
   - Conception du planning
   - Création de la bdd
 
-- Réflexions :
-  - 
-
-- Progrès accomplis :
-  - 
-
 ## Jour 2
 
 - Activités :
@@ -23,20 +17,33 @@ PO: Yves Juillerat
   - Création formulaire connexion
   - Création formulaire d'inscription
 
-- Réflexions :
-  - 
-
-- Progrès accomplis :
-  - 
-
 ## Jour 3
 
 - Activités :
     - Fonctionalité du login 
     - Je me suis documenter sur la liaison avec la bdd en c#
 
- - Réflexions :
-    - 
+## Jour 4
 
- - Progrès accomplis :
-    - 
+- Activités :
+    - Fonctionalité de l'inscription
+
+## Jour 5
+
+- Activités :
+  - Visualisations des tutos sur classroom
+  - Utilisation du système de DataGridView
+
+## Jour 6
+
+- Activités :
+  - Visualisations des tutos sur classroom
+  - Utilisation du système de DataGridView
+
+
+
+## Jour 17.05
+
+- Activités :
+  - CRUD
+  - Utilisation du système de DataGridView

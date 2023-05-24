@@ -1,7 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -86,6 +88,47 @@ namespace GestionParties_KevinFLPLM
                 str = "Inscription échoué !";
             }
             return str;
+        }
+
+        public DataTable GetInfoAdmin(string query)
+        {
+            DataTable dtOut = new DataTable();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                mySqlConnection?.Open();
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+                dtOut.Load(reader);
+                mySqlConnection?.Close();
+            }
+            catch (Exception? ex)
+            {
+                throw ex;
+            }
+            return dtOut;
+        }
+
+        public List<string> GetEnumValue()
+        {
+            List<string> listEnum = new List<string>();
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT DISTINCT evt_status FROM events", mySqlConnection);
+                mySqlConnection?.Open();
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string valueEnum = (string)reader["evt_status"];
+                    listEnum.Add(valueEnum);
+                }
+
+                mySqlConnection?.Close();
+            }
+            catch (Exception? ex)
+            {
+                throw ex;
+            }
+            return listEnum;
         }
 
         //public string GetInfoParties(string query)

@@ -41,7 +41,7 @@ namespace GestionParties_KevinFLPLM
 
             foreach (Utilisateur utilisateur in listUtilisateurs)
             {
-                   if (utilisateur.Role == "admin")
+                if (utilisateur.Role == "Admin")
                 {
 
                     btnAdmin.Visible = true;
@@ -83,6 +83,11 @@ namespace GestionParties_KevinFLPLM
 
 
         }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            FrmPanelAdmin frm = new FrmPanelAdmin();
+            frm.ShowDialog();
+        }
     }
 }
-            

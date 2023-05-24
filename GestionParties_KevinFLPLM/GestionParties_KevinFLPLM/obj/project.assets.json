@@ -1710,19 +1710,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\kevinflplm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
+      "projectUniqueName": "C:\\Users\\kevinflplm\\Documents\\GitHub\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
       "projectName": "GestionParties_KevinFLPLM",
-      "projectPath": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\obj\\",
+      "projectPath": "C:\\Users\\kevinflplm\\Documents\\GitHub\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM.csproj",
+      "packagesPath": "C:\\Users\\kevinflplm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kevinflplm\\Documents\\GitHub\\GameManager\\GestionParties_KevinFLPLM\\GestionParties_KevinFLPLM\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kevinflplm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1772,7 +1772,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
