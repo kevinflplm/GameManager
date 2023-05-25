@@ -9,6 +9,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GestionParties_KevinFLPLM
@@ -158,6 +160,34 @@ namespace GestionParties_KevinFLPLM
             }
         }
 
+        public void UpdateInfoGame(string name, string period, string desc, byte[] img, string minPly, string maxPly, string price, int mjId, int evtId, int gmeId)
+        {
+            try
+            {
+
+                mySqlConnection?.Open();
+                string updateQuery = "UPDATE games SET gme_name = @newName, gme_period = @newPeriod, gme_description = @newDesc, gme_image = @newImg, gme_min_players = @newMinPly, gme_max_players = @newMaxPly, gme_price = @newPrice, gme_mj_usr_id = @newMjId, gme_evt_id = @newEvtId" +
+                    " WHERE gme_id = @gmeID";
+                MySqlCommand command = new MySqlCommand(updateQuery, mySqlConnection);
+                command.Parameters.AddWithValue("@newName", name);
+                command.Parameters.AddWithValue("@newPeriod", period);
+                command.Parameters.AddWithValue("@newDesc", desc);
+                command.Parameters.AddWithValue("@newImg", img);
+                command.Parameters.AddWithValue("@newMinPly", minPly);
+                command.Parameters.AddWithValue("@newMaxPly", maxPly);
+                command.Parameters.AddWithValue("@newPrice", price);
+                command.Parameters.AddWithValue("@newMjId", mjId);
+                command.Parameters.AddWithValue("@newEvtId", evtId);
+                command.Parameters.AddWithValue("@gmeID", gmeId);
+                command.ExecuteNonQuery();
+                mySqlConnection?.Close();
+            }
+            catch (Exception? ex)
+            {
+                throw ex;
+            }
+        }
+
         public void AddNewEvent(DateTime dt, string name, string location, string status, string maxMor, string maxAft, string maxEvn) 
         {
             try
@@ -183,6 +213,33 @@ namespace GestionParties_KevinFLPLM
             }
         }
 
+        public void AddNewGame(string name, string period, string desc, byte[] img, string minPly, string maxPly, string price, int mjId, int evtId)
+        {
+            try
+            {
+
+                mySqlConnection?.Open();
+                string insertQuery = "INSERT INTO games (gme_name, gme_period, gme_description, gme_image, gme_min_players, gme_max_players, gme_price, gme_mj_usr_id, gme_evt_id) " +
+                    "VALUES (@gmeName, @gmePeriod, @gmeDesc, @gmeImage, @gmeMinPly, @gmeMaxPly, @gmePrice, @gmeMjId, @gmeEvtId)";
+                MySqlCommand command = new MySqlCommand(insertQuery, mySqlConnection);
+                command.Parameters.AddWithValue("@gmeName", name);
+                command.Parameters.AddWithValue("@gmePeriod", period);
+                command.Parameters.AddWithValue("@gmeDesc", desc);
+                command.Parameters.AddWithValue("@gmeImage", img);
+                command.Parameters.AddWithValue("@gmeMinPly", minPly);
+                command.Parameters.AddWithValue("@gmeMaxPly", maxPly);
+                command.Parameters.AddWithValue("@gmePrice", price);
+                command.Parameters.AddWithValue("@gmeMjId", mjId);
+                command.Parameters.AddWithValue("@gmeEvtId", evtId);
+                command.ExecuteNonQuery();
+                mySqlConnection?.Close();
+            }
+            catch (Exception? ex)
+            {
+                throw ex;
+            }
+        }
+
         public void RemoveEvent(int eventId)
         {
             try
@@ -191,6 +248,23 @@ namespace GestionParties_KevinFLPLM
                 string deleteQuery = "DELETE FROM events WHERE evt_id = @eventId";
                 MySqlCommand command = new MySqlCommand(deleteQuery, mySqlConnection);
                 command.Parameters.AddWithValue("@eventId", eventId);
+                command.ExecuteNonQuery();
+                mySqlConnection?.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void RemoveGame(int gameId)
+        {
+            try
+            {
+                mySqlConnection?.Open();
+                string deleteQuery = "DELETE FROM games WHERE gme_id = @gameId";
+                MySqlCommand command = new MySqlCommand(deleteQuery, mySqlConnection);
+                command.Parameters.AddWithValue("@gameId", gameId);
                 command.ExecuteNonQuery();
                 mySqlConnection?.Close();
             }

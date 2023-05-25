@@ -41,12 +41,7 @@ namespace GestionParties_KevinFLPLM
 
             foreach (Utilisateur utilisateur in listUtilisateurs)
             {
-                if (utilisateur.Role == "Admin")
-                {
-
-                    btnAdmin.Visible = true;
-
-                }
+                llbAdmin.Visible = utilisateur.Role == "Admin";
             }
 
             MySqlConnection mySqlConnection = new MySqlConnection("server=localhost;port=3306;database=gestion_parties;username=root;pwd=Super");
@@ -84,10 +79,17 @@ namespace GestionParties_KevinFLPLM
 
         }
 
-        private void btnAdmin_Click(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FrmPanelAdmin frm = new FrmPanelAdmin();
             frm.ShowDialog();
+        }
+
+        private void llbDeco_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmLogin frm = new FrmLogin();
+            frm.Show();
+            this.Close();
         }
     }
 }

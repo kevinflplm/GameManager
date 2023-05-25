@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace GestionParties_KevinFLPLM
     public partial class FrmPanelAdmin : Form
     {
         Database db = new Database();
+        private string selectedImagePath;
 
         public FrmPanelAdmin()
         {
@@ -29,6 +31,8 @@ namespace GestionParties_KevinFLPLM
             }
             cbxStatus.SelectedIndex = 0;
             cbxPeriod.SelectedIndex = 0;
+            cbxRole.SelectedIndex = 0;
+            cbxUsrStatus.SelectedIndex = 0;
 
         }
 
@@ -50,6 +54,8 @@ namespace GestionParties_KevinFLPLM
             tbxInfo4.Visible = true;
             tbxInfo5.Visible = true;
             tbxInfo6.Visible = true;
+            cbxUsrStatus.Visible = true;
+            cbxRole.Visible = true;
             ////////////
             string query = "SELECT * FROM users";
             dgvListeUsers.DataSource = db.GetInfoAdmin(query);
@@ -101,8 +107,6 @@ namespace GestionParties_KevinFLPLM
             lblInfo5.Text = "Joueurs minimum :";
             lblInfo6.Text = "Joueurs maximum :";
             lblInfo7.Text = "Récompenses :";
-            lblInfo8.Text = "Id MJ :";
-            lblInfo9.Text = "Id Evenement :";
             tbxInfo1.Visible = true;
             cbxPeriod.Visible = true;
             tbxInfo3.Visible = true;
@@ -119,10 +123,12 @@ namespace GestionParties_KevinFLPLM
 
         private void dgvListeUsers_DoubleClick(object sender, EventArgs e)
         {
+            dgvListeUsers.CurrentRow.Selected = true;
             if (dgvListeUsers.CurrentRow.Index != -1)
             {
                 btnAdd.Enabled = false;
                 tbxInfo1.Text = dgvListeUsers.CurrentRow.Cells[1].Value.ToString();
+                tbxInfo2.Text = dgvListeUsers.CurrentRow.Cells[2].Value.ToString();
                 if (tbxInfo1.Visible == false)
                 {
                     tbxInfo1.Text = dgvListeUsers.CurrentRow.Cells[0].Value.ToString();
@@ -140,23 +146,197 @@ namespace GestionParties_KevinFLPLM
                     nudInfo1.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[5].Value.ToString());
                     nudInfo2.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[6].Value.ToString());
                     nudInfo3.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[7].Value.ToString());
-                    btnDel.Enabled = true;
                 }
                 if (tbxInfo2.Visible == false)
                 {
+                    tbxInfo2.Text = dgvListeUsers.CurrentRow.Cells[0].Value.ToString();
+                    string period = dgvListeUsers.CurrentRow.Cells[2].Value.ToString();
+                    switch (period)
+                    {
+                        case "Matin":
+                            cbxPeriod.SelectedIndex = 0;
+                            break;
+                        case "Après-midi":
+                            cbxPeriod.SelectedIndex = 1;
+                            break;
+                        case "Soir":
+                            cbxPeriod.SelectedIndex = 2;
+                            break;
+                    }
+                    object imgStocke = dgvListeUsers.CurrentRow.Cells[4].Value;
+                    if (imgStocke != null && imgStocke is byte[])
+                    {
+                        // Convertion de la valeur de la cellule en objet de type Byte
+                        byte[] imageBytes = (byte[])imgStocke;
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            Image image = Image.FromStream(ms);
+
+
+                            pibImage.Visible = true;
+                            pibImage.Image = image;
+                        }
+                    }
                     nudInfo1.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[5].Value.ToString());
                     nudInfo2.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[6].Value.ToString());
                     nudInfo3.Value = Convert.ToInt32(dgvListeUsers.CurrentRow.Cells[7].Value.ToString());
                 }
-                tbxInfo2.Text = dgvListeUsers.CurrentRow.Cells[2].Value.ToString();
+                if (cbxRole.Visible == true)
+                {
+                    string role = dgvListeUsers.CurrentRow.Cells[8].Value.ToString();
+                    string usrStatus = dgvListeUsers.CurrentRow.Cells[7].Value.ToString();
+                    switch (role)
+                    {
+                        case "Joueur":
+                            cbxRole.SelectedIndex = 0;
+                            break;
+                        case "MJ à valider":
+                            cbxRole.SelectedIndex = 1;
+                            break;
+                        case "MJ":
+                            cbxRole.SelectedIndex = 2;
+                            break;
+                        case "Admin":
+                            cbxRole.SelectedIndex = 3;
+                            break;
+                    }
+                    switch (usrStatus)
+                    {
+                        case "actif":
+                            cbxRole.SelectedIndex = 0;
+                            break;
+                        case "inactif":
+                            cbxRole.SelectedIndex = 1;
+                            break;
+                    }
+                }
                 tbxInfo3.Text = dgvListeUsers.CurrentRow.Cells[3].Value.ToString();
                 tbxInfo4.Text = dgvListeUsers.CurrentRow.Cells[4].Value.ToString();
                 tbxInfo5.Text = dgvListeUsers.CurrentRow.Cells[5].Value.ToString();
                 tbxInfo6.Text = dgvListeUsers.CurrentRow.Cells[6].Value.ToString();
 
                 btnSave.Enabled = true;
+                btnDel.Enabled = true;
             }
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (tbxInfo1.Visible == false)
+            {
+                int evtId = Convert.ToInt32(tbxInfo1.Text);
+                DateTime dt = dtpEvents.Value;
+                string name = tbxInfo2.Text;
+                string location = tbxInfo3.Text;
+                string status = cbxStatus.Text;
+                string maxMor = nudInfo1.Value.ToString();
+                string maxAft = nudInfo2.Value.ToString();
+                string maxEvn = nudInfo3.Value.ToString();
+                db.UpdateInfoEvent(evtId, dt, name, location, status, maxMor, maxAft, maxEvn);
+                MessageBox.Show("OK");
+            }
+            if (tbxInfo2.Visible == false)
+            {
+                if (!string.IsNullOrEmpty(selectedImagePath))
+                {
+                    int gmeId = Convert.ToInt32(tbxInfo2.Text);
+                    byte[] imageBytes = File.ReadAllBytes(selectedImagePath);
+                    string name = tbxInfo1.Text;
+                    string period = cbxPeriod.Text;
+                    string desc = tbxInfo3.Text;
+                    string minPlayers = nudInfo1.Value.ToString();
+                    string maxPlayers = nudInfo2.Value.ToString();
+                    string price = nudInfo3.Value.ToString();
+                    db.UpdateInfoGame(name, period, desc, imageBytes, minPlayers, maxPlayers, price, 1, 3, gmeId);
+                    MessageBox.Show("OK");
+                }
+            }
+
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (tbxInfo1.Visible == false)
+            {
+                int evtId = Convert.ToInt32(tbxInfo1.Text);
+                db.RemoveEvent(evtId);
+                MessageBox.Show("OK");
+            }
+            if (tbxInfo2.Visible == false)
+            {
+                int gmeId = Convert.ToInt32(tbxInfo2.Text);
+                db.RemoveEvent(gmeId);
+                MessageBox.Show("OK");
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            clear();
+            dgvListeUsers.DataSource = null;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (tbxInfo1.Visible == false)
+            {
+                if (dtpEvents.Value != null && tbxInfo2.Text != string.Empty && tbxInfo3.Text != string.Empty && nudInfo1.Value != null && nudInfo2.Value != null && nudInfo3.Value != null)
+                {
+                    DateTime dt = dtpEvents.Value;
+                    string name = tbxInfo2.Text;
+                    string location = tbxInfo3.Text;
+                    string status = cbxStatus.Text;
+                    string maxMor = nudInfo1.Value.ToString();
+                    string maxAft = nudInfo2.Value.ToString();
+                    string maxEvn = nudInfo3.Value.ToString();
+                    db.AddNewEvent(dt, name, location, status, maxMor, maxAft, maxEvn);
+                    MessageBox.Show("OK");
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs !", "required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            if (tbxInfo2.Visible == false)
+            {
+                if (tbxInfo1.Text != string.Empty && tbxInfo3.Text != string.Empty && lblInfoImg.Text != string.Empty)
+                {
+                    if (!string.IsNullOrEmpty(selectedImagePath))
+                    {
+                        byte[] imageBytes = File.ReadAllBytes(selectedImagePath);
+                        string name = tbxInfo1.Text;
+                        string period = cbxPeriod.Text;
+                        string desc = tbxInfo3.Text;
+                        string minPlayers = nudInfo1.Value.ToString();
+                        string maxPlayers = nudInfo2.Value.ToString();
+                        string price = nudInfo3.Value.ToString();
+                        db.AddNewGame(name, period, desc, imageBytes, minPlayers, maxPlayers, price, 1, 1);
+                        MessageBox.Show("OK");
+                    }
+                }
+            }
+        }
+
+        private void btnSelectImg_Click(object sender, EventArgs e)
+        {
+            ofdImage.Filter = "Fichiers image (*.jpg, *.jpeg, *.png) |*.jpg;*.jpeg;*.png;*.gif|Tous les fichiers|*.*";
+
+            if (ofdImage.ShowDialog() == DialogResult.OK)
+            {
+                selectedImagePath = ofdImage.FileName;
+
+                lblInfoImg.Text = selectedImagePath;
+                lblInfoImg.Visible = false;
+                pibImage.Visible = true;
+                pibImage.Image = Image.FromFile(selectedImagePath);
+
+            }
+        }
+
+        private void dgvListeUsers_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvListeUsers.CurrentRow.Selected = true;
         }
 
         void clear()
@@ -194,92 +374,10 @@ namespace GestionParties_KevinFLPLM
             nudInfo1.Maximum = 20;
             nudInfo2.Maximum = 20;
             nudInfo3.Maximum = 20;
+            pibImage.Visible = false;
+            cbxUsrStatus.Visible = false;
+            cbxRole.Visible = false;
 
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (tbxInfo1.Visible == false)
-            {
-                int evtId = Convert.ToInt32(tbxInfo1.Text);
-                DateTime dt = dtpEvents.Value;
-                string name = tbxInfo2.Text;
-                string location = tbxInfo3.Text;
-                string status = cbxStatus.Text;
-                string maxMor = nudInfo1.Value.ToString();
-                string maxAft = nudInfo2.Value.ToString();
-                string maxEvn = nudInfo3.Value.ToString();
-                db.UpdateInfoEvent(evtId, dt, name, location, status, maxMor, maxAft, maxEvn);
-                MessageBox.Show("OK");
-            }
-
-
-        }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            if (tbxInfo1.Visible == false)
-            {
-                int evtId = Convert.ToInt32(tbxInfo1.Text);
-                db.RemoveEvent(evtId);
-                MessageBox.Show("OK");
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            clear();
-            dgvListeUsers.DataSource = null;
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (tbxInfo1.Visible == false)
-            {
-                if (dtpEvents.Value != null && tbxInfo2.Text != string.Empty && tbxInfo3.Text != string.Empty && nudInfo1.Value != null && nudInfo2.Value != null && nudInfo3.Value != null)
-                {
-                    DateTime dt = dtpEvents.Value;
-                    string name = tbxInfo2.Text;
-                    string location = tbxInfo3.Text;
-                    string status = cbxStatus.Text;
-                    string maxMor = nudInfo1.Value.ToString();
-                    string maxAft = nudInfo2.Value.ToString();
-                    string maxEvn = nudInfo3.Value.ToString();
-                    db.AddNewEvent(dt, name, location, status, maxMor, maxAft, maxEvn);
-                    MessageBox.Show("OK");
-                }
-                else
-                {
-                    MessageBox.Show("Veuillez remplir tous les champs !", "required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            if (tbxInfo2.Visible == false)
-            {
-                if (tbxInfo1.Text != string.Empty && tbxInfo3.Text != string.Empty && lblInfoImg.Text != string.Empty)
-                {
-                    string name = tbxInfo1.Text;
-                    string period = cbxPeriod.Text;
-                    string desc = tbxInfo3.Text;
-                    byte[] imageData = File.ReadAllBytes(lblInfoImg.Text);
-                    string minPlayers = nudInfo1.Value.ToString();
-                    string maxPlayers = nudInfo2.Value.ToString();
-                    string price = nudInfo3.Value.ToString();
-
-                }
-            }
-        }
-
-        private void btnSelectImg_Click(object sender, EventArgs e)
-        {
-            ofdImage.Filter = "Fichiers image|*.jpg;*.jpeg;*.png;*.gif|Tous les fichiers|*.*";
-
-            if (ofdImage.ShowDialog() == DialogResult.OK)
-            {
-                string imagePath = ofdImage.FileName;
-
-                lblInfoImg.Text = imagePath;
-
-            }
         }
     }
 }

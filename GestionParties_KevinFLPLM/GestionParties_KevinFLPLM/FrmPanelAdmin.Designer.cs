@@ -60,10 +60,14 @@
             btnSelectImg = new Button();
             lblInfoImg = new Label();
             tbxInfo6 = new TextBox();
+            pibImage = new PictureBox();
+            cbxRole = new ComboBox();
+            cbxUsrStatus = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvListeUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pibImage).BeginInit();
             SuspendLayout();
             // 
             // dgvListeUsers
@@ -75,6 +79,7 @@
             dgvListeUsers.RowTemplate.Height = 25;
             dgvListeUsers.Size = new Size(562, 283);
             dgvListeUsers.TabIndex = 0;
+            dgvListeUsers.CellMouseClick += dgvListeUsers_CellMouseClick;
             dgvListeUsers.DoubleClick += dgvListeUsers_DoubleClick;
             // 
             // btnGstbUsers
@@ -372,11 +377,46 @@
             tbxInfo6.UseSystemPasswordChar = true;
             tbxInfo6.Visible = false;
             // 
+            // pibImage
+            // 
+            pibImage.Location = new Point(305, 168);
+            pibImage.Name = "pibImage";
+            pibImage.Size = new Size(59, 57);
+            pibImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            pibImage.TabIndex = 37;
+            pibImage.TabStop = false;
+            pibImage.Visible = false;
+            // 
+            // cbxRole
+            // 
+            cbxRole.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxRole.FormattingEnabled = true;
+            cbxRole.Items.AddRange(new object[] { "Joueur", "MJ à valider", "MJ", "Admin" });
+            cbxRole.Location = new Point(166, 307);
+            cbxRole.Name = "cbxRole";
+            cbxRole.Size = new Size(137, 23);
+            cbxRole.TabIndex = 38;
+            cbxRole.Visible = false;
+            // 
+            // cbxUsrStatus
+            // 
+            cbxUsrStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxUsrStatus.FormattingEnabled = true;
+            cbxUsrStatus.Items.AddRange(new object[] { "actif", "inactif" });
+            cbxUsrStatus.Location = new Point(166, 281);
+            cbxUsrStatus.Name = "cbxUsrStatus";
+            cbxUsrStatus.Size = new Size(137, 23);
+            cbxUsrStatus.TabIndex = 39;
+            cbxUsrStatus.Visible = false;
+            // 
             // FrmPanelAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(947, 411);
+            Controls.Add(cbxUsrStatus);
+            Controls.Add(cbxRole);
+            Controls.Add(pibImage);
             Controls.Add(tbxInfo6);
             Controls.Add(lblInfoImg);
             Controls.Add(btnSelectImg);
@@ -416,6 +456,7 @@
             ((System.ComponentModel.ISupportInitialize)nudInfo1).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo2).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pibImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -454,5 +495,8 @@
         private Button btnSelectImg;
         private Label lblInfoImg;
         private TextBox tbxInfo6;
+        private PictureBox pibImage;
+        private ComboBox cbxRole;
+        private ComboBox cbxUsrStatus;
     }
 }
