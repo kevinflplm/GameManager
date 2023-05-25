@@ -42,21 +42,28 @@
             tbxInfo4 = new TextBox();
             tbxInfo5 = new TextBox();
             lblInfo5 = new Label();
-            tbxInfo6 = new TextBox();
             lblInfo6 = new Label();
-            tbxInfo7 = new TextBox();
             lblInfo7 = new Label();
-            tbxInfo8 = new TextBox();
             lblInfo8 = new Label();
-            tbxInfo9 = new TextBox();
             lblInfo9 = new Label();
             btnSave = new Button();
             btnDel = new Button();
             btnCancel = new Button();
-            button1 = new Button();
+            btnAdd = new Button();
             dtpEvents = new DateTimePicker();
             cbxStatus = new ComboBox();
+            nudInfo1 = new NumericUpDown();
+            nudInfo2 = new NumericUpDown();
+            nudInfo3 = new NumericUpDown();
+            cbxPeriod = new ComboBox();
+            ofdImage = new OpenFileDialog();
+            btnSelectImg = new Button();
+            lblInfoImg = new Label();
+            tbxInfo6 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvListeUsers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo3).BeginInit();
             SuspendLayout();
             // 
             // dgvListeUsers
@@ -184,14 +191,6 @@
             lblInfo5.Size = new Size(0, 15);
             lblInfo5.TabIndex = 13;
             // 
-            // tbxInfo6
-            // 
-            tbxInfo6.Location = new Point(166, 252);
-            tbxInfo6.Name = "tbxInfo6";
-            tbxInfo6.Size = new Size(137, 23);
-            tbxInfo6.TabIndex = 16;
-            tbxInfo6.Visible = false;
-            // 
             // lblInfo6
             // 
             lblInfo6.AutoSize = true;
@@ -199,14 +198,6 @@
             lblInfo6.Name = "lblInfo6";
             lblInfo6.Size = new Size(0, 15);
             lblInfo6.TabIndex = 15;
-            // 
-            // tbxInfo7
-            // 
-            tbxInfo7.Location = new Point(166, 280);
-            tbxInfo7.Name = "tbxInfo7";
-            tbxInfo7.Size = new Size(137, 23);
-            tbxInfo7.TabIndex = 18;
-            tbxInfo7.Visible = false;
             // 
             // lblInfo7
             // 
@@ -216,14 +207,6 @@
             lblInfo7.Size = new Size(0, 15);
             lblInfo7.TabIndex = 17;
             // 
-            // tbxInfo8
-            // 
-            tbxInfo8.Location = new Point(166, 307);
-            tbxInfo8.Name = "tbxInfo8";
-            tbxInfo8.Size = new Size(137, 23);
-            tbxInfo8.TabIndex = 20;
-            tbxInfo8.Visible = false;
-            // 
             // lblInfo8
             // 
             lblInfo8.AutoSize = true;
@@ -231,14 +214,6 @@
             lblInfo8.Name = "lblInfo8";
             lblInfo8.Size = new Size(0, 15);
             lblInfo8.TabIndex = 19;
-            // 
-            // tbxInfo9
-            // 
-            tbxInfo9.Location = new Point(166, 333);
-            tbxInfo9.Name = "tbxInfo9";
-            tbxInfo9.Size = new Size(137, 23);
-            tbxInfo9.TabIndex = 22;
-            tbxInfo9.Visible = false;
             // 
             // lblInfo9
             // 
@@ -251,6 +226,7 @@
             // btnSave
             // 
             btnSave.BackColor = SystemColors.HotTrack;
+            btnSave.Enabled = false;
             btnSave.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(792, 359);
@@ -259,10 +235,12 @@
             btnSave.TabIndex = 23;
             btnSave.Text = "Sauvegarder";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnDel
             // 
             btnDel.BackColor = Color.Red;
+            btnDel.Enabled = false;
             btnDel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnDel.ForeColor = Color.White;
             btnDel.Location = new Point(651, 359);
@@ -271,6 +249,7 @@
             btnDel.TabIndex = 24;
             btnDel.Text = "Supprimer";
             btnDel.UseVisualStyleBackColor = false;
+            btnDel.Click += btnDel_Click;
             // 
             // btnCancel
             // 
@@ -283,18 +262,21 @@
             btnCancel.TabIndex = 25;
             btnCancel.Text = "Annuler";
             btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // button1
+            // btnAdd
             // 
-            button1.BackColor = Color.LimeGreen;
-            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(512, 359);
-            button1.Name = "button1";
-            button1.Size = new Size(115, 40);
-            button1.TabIndex = 26;
-            button1.Text = "Ajouter";
-            button1.UseVisualStyleBackColor = false;
+            btnAdd.BackColor = Color.LimeGreen;
+            btnAdd.Enabled = false;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(512, 359);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(115, 40);
+            btnAdd.TabIndex = 26;
+            btnAdd.Text = "Ajouter";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // dtpEvents
             // 
@@ -306,6 +288,7 @@
             // 
             // cbxStatus
             // 
+            cbxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxStatus.FormattingEnabled = true;
             cbxStatus.Location = new Point(166, 169);
             cbxStatus.Name = "cbxStatus";
@@ -313,24 +296,103 @@
             cbxStatus.TabIndex = 28;
             cbxStatus.Visible = false;
             // 
+            // nudInfo1
+            // 
+            nudInfo1.Location = new Point(166, 224);
+            nudInfo1.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
+            nudInfo1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo1.Name = "nudInfo1";
+            nudInfo1.Size = new Size(120, 23);
+            nudInfo1.TabIndex = 29;
+            nudInfo1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo1.Visible = false;
+            // 
+            // nudInfo2
+            // 
+            nudInfo2.Location = new Point(166, 252);
+            nudInfo2.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
+            nudInfo2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo2.Name = "nudInfo2";
+            nudInfo2.Size = new Size(120, 23);
+            nudInfo2.TabIndex = 30;
+            nudInfo2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo2.Visible = false;
+            // 
+            // nudInfo3
+            // 
+            nudInfo3.Location = new Point(166, 281);
+            nudInfo3.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
+            nudInfo3.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo3.Name = "nudInfo3";
+            nudInfo3.Size = new Size(120, 23);
+            nudInfo3.TabIndex = 31;
+            nudInfo3.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudInfo3.Visible = false;
+            // 
+            // cbxPeriod
+            // 
+            cbxPeriod.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPeriod.FormattingEnabled = true;
+            cbxPeriod.Items.AddRange(new object[] { "Matin", "Après-midi", "Soir" });
+            cbxPeriod.Location = new Point(166, 89);
+            cbxPeriod.Name = "cbxPeriod";
+            cbxPeriod.Size = new Size(137, 23);
+            cbxPeriod.TabIndex = 32;
+            cbxPeriod.Visible = false;
+            // 
+            // ofdImage
+            // 
+            ofdImage.FileName = "openFileDialog1";
+            // 
+            // btnSelectImg
+            // 
+            btnSelectImg.Location = new Point(166, 168);
+            btnSelectImg.Name = "btnSelectImg";
+            btnSelectImg.Size = new Size(75, 23);
+            btnSelectImg.TabIndex = 33;
+            btnSelectImg.Text = "Choisir";
+            btnSelectImg.UseVisualStyleBackColor = true;
+            btnSelectImg.Visible = false;
+            btnSelectImg.Click += btnSelectImg_Click;
+            // 
+            // lblInfoImg
+            // 
+            lblInfoImg.AutoSize = true;
+            lblInfoImg.Location = new Point(247, 172);
+            lblInfoImg.Name = "lblInfoImg";
+            lblInfoImg.Size = new Size(0, 15);
+            lblInfoImg.TabIndex = 35;
+            // 
+            // tbxInfo6
+            // 
+            tbxInfo6.Location = new Point(166, 252);
+            tbxInfo6.Name = "tbxInfo6";
+            tbxInfo6.Size = new Size(137, 23);
+            tbxInfo6.TabIndex = 36;
+            tbxInfo6.UseSystemPasswordChar = true;
+            tbxInfo6.Visible = false;
+            // 
             // FrmPanelAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(947, 411);
+            Controls.Add(tbxInfo6);
+            Controls.Add(lblInfoImg);
+            Controls.Add(btnSelectImg);
+            Controls.Add(cbxPeriod);
+            Controls.Add(nudInfo3);
+            Controls.Add(nudInfo2);
+            Controls.Add(nudInfo1);
             Controls.Add(cbxStatus);
             Controls.Add(dtpEvents);
-            Controls.Add(button1);
+            Controls.Add(btnAdd);
             Controls.Add(btnCancel);
             Controls.Add(btnDel);
             Controls.Add(btnSave);
-            Controls.Add(tbxInfo9);
             Controls.Add(lblInfo9);
-            Controls.Add(tbxInfo8);
             Controls.Add(lblInfo8);
-            Controls.Add(tbxInfo7);
             Controls.Add(lblInfo7);
-            Controls.Add(tbxInfo6);
             Controls.Add(lblInfo6);
             Controls.Add(tbxInfo5);
             Controls.Add(lblInfo5);
@@ -346,10 +408,14 @@
             Controls.Add(btnGstnGames);
             Controls.Add(btnGstbUsers);
             Controls.Add(dgvListeUsers);
+            MaximizeBox = false;
             Name = "FrmPanelAdmin";
             Text = "FrmGstnUtilisateurs";
             Load += FrmGstnUtilisateurs_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListeUsers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudInfo3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -370,19 +436,23 @@
         private TextBox tbxInfo4;
         private TextBox tbxInfo5;
         private Label lblInfo5;
-        private TextBox tbxInfo6;
         private Label lblInfo6;
-        private TextBox tbxInfo7;
         private Label lblInfo7;
-        private TextBox tbxInfo8;
         private Label lblInfo8;
-        private TextBox tbxInfo9;
         private Label lblInfo9;
         private Button btnSave;
         private Button btnDel;
         private Button btnCancel;
-        private Button button1;
+        private Button btnAdd;
         private DateTimePicker dtpEvents;
         private ComboBox cbxStatus;
+        private NumericUpDown nudInfo1;
+        private NumericUpDown nudInfo2;
+        private NumericUpDown nudInfo3;
+        private ComboBox cbxPeriod;
+        private OpenFileDialog ofdImage;
+        private Button btnSelectImg;
+        private Label lblInfoImg;
+        private TextBox tbxInfo6;
     }
 }

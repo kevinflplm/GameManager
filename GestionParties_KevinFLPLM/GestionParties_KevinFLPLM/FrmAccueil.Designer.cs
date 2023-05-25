@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             btnAdmin = new Button();
+            openFileDialog1 = new OpenFileDialog();
             SuspendLayout();
             // 
             // label1
@@ -54,6 +55,10 @@
             btnAdmin.Visible = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // FrmAccueil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -61,6 +66,7 @@
             ClientSize = new Size(1064, 632);
             Controls.Add(btnAdmin);
             Controls.Add(label1);
+            MaximizeBox = false;
             Name = "FrmAccueil";
             Text = "FrmAccueil";
             Load += FrmAccueil_Load;
@@ -73,5 +79,6 @@
         private Label label1;
         private PictureBox pibTest;
         private Button btnAdmin;
+        private OpenFileDialog openFileDialog1;
     }
 }
