@@ -75,8 +75,6 @@ namespace GestionParties_KevinFLPLM
             // Fermeture de la connexion à la base de données
             reader.Close();
             mySqlConnection.Close();
-
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -90,6 +88,13 @@ namespace GestionParties_KevinFLPLM
             FrmLogin frm = new FrmLogin();
             frm.Show();
             this.Close();
+        }
+
+        private void llbCompte_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmProfil frm = new FrmProfil();
+            frm.Show();
+            this.Hide();
         }
     }
 }

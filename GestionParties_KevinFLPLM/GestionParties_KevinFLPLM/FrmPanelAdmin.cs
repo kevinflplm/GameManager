@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GestionParties_KevinFLPLM
 {
@@ -16,6 +17,7 @@ namespace GestionParties_KevinFLPLM
     {
         Database db = new Database();
         private string selectedImagePath;
+        private byte[] selectedImageBytes;
 
         public FrmPanelAdmin()
         {
@@ -39,6 +41,7 @@ namespace GestionParties_KevinFLPLM
         private void btnGstbUsers_Click(object sender, EventArgs e)
         {
             clear();
+            btnAdd.Enabled = true;
             ////////////
             lblInfo1.Text = "Prénom :";
             lblInfo2.Text = "Nom :";
@@ -168,6 +171,7 @@ namespace GestionParties_KevinFLPLM
                     {
                         // Convertion de la valeur de la cellule en objet de type Byte
                         byte[] imageBytes = (byte[])imgStocke;
+                        selectedImageBytes = imageBytes;
                         using (MemoryStream ms = new MemoryStream(imageBytes))
                         {
                             Image image = Image.FromStream(ms);
@@ -238,10 +242,10 @@ namespace GestionParties_KevinFLPLM
             }
             if (tbxInfo2.Visible == false)
             {
-                if (!string.IsNullOrEmpty(selectedImagePath))
+                if (selectedImageBytes != null)
                 {
                     int gmeId = Convert.ToInt32(tbxInfo2.Text);
-                    byte[] imageBytes = File.ReadAllBytes(selectedImagePath);
+                    byte[] imageBytes = selectedImageBytes;
                     string name = tbxInfo1.Text;
                     string period = cbxPeriod.Text;
                     string desc = tbxInfo3.Text;
@@ -266,7 +270,7 @@ namespace GestionParties_KevinFLPLM
             if (tbxInfo2.Visible == false)
             {
                 int gmeId = Convert.ToInt32(tbxInfo2.Text);
-                db.RemoveEvent(gmeId);
+                db.RemoveGame(gmeId);
                 MessageBox.Show("OK");
             }
         }
@@ -314,6 +318,33 @@ namespace GestionParties_KevinFLPLM
                         db.AddNewGame(name, period, desc, imageBytes, minPlayers, maxPlayers, price, 1, 1);
                         MessageBox.Show("OK");
                     }
+                }
+            }
+            if (cbxRole.Visible == true) 
+            {
+                if (tbxInfo1.Text != string.Empty && tbxInfo2.Text != string.Empty &&  tbxInfo3.Text != string.Empty && tbxInfo4.Text != string.Empty && tbxInfo5.Text != string.Empty && tbxInfo6.Text != string.Empty)
+                {
+                    if (!db.IsValidEmail(tbxInfo4.Text))
+                    {
+                        MessageBox.Show("Veuillez entrer un email valide !", "Système", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }else
+                    {
+                        string nom = tbxInfo1.Text;
+                        string prenom = tbxInfo2.Text;
+                        string phone = tbxInfo3.Text;
+                        string email = tbxInfo4.Text;
+                        string pseudo = tbxInfo5.Text;
+                        string mdp = tbxInfo6.Text;
+                        string status = cbxUsrStatus.Text;
+                        string role = cbxRole.Text;
+                        db.Inscription(nom, prenom, pseudo, email, phone, mdp, status, role);
+                        MessageBox.Show("Utilisateur ajouté !", "Système", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs !", "Système", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

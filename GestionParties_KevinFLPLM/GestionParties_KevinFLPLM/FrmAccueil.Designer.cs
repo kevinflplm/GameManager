@@ -58,6 +58,7 @@
             llbCompte.TabIndex = 2;
             llbCompte.TabStop = true;
             llbCompte.Text = "Mon compte";
+            llbCompte.LinkClicked += llbCompte_LinkClicked;
             // 
             // llbAdmin
             // 

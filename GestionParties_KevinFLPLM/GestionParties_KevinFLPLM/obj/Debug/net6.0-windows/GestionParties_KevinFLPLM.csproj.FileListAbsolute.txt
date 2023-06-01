@@ -88,3 +88,4 @@ C:\Users\kevinflplm\Documents\GitHub\GameManager\GestionParties_KevinFLPLM\Gesti
 C:\Users\kevinflplm\Documents\GitHub\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.genruntimeconfig.cache
 C:\Users\kevinflplm\Documents\GitHub\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\ref\GestionParties_KevinFLPLM.dll
 C:\Users\kevinflplm\Documents\GitHub\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.FrmPanelAdmin.resources
+C:\Users\kevinflplm\Documents\GitHub\GameManager\GestionParties_KevinFLPLM\GestionParties_KevinFLPLM\obj\Debug\net6.0-windows\GestionParties_KevinFLPLM.FrmProfil.resources

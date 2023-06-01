@@ -40,6 +40,8 @@ namespace GestionParties_KevinFLPLM
             string email = tbxEmail.Text;
             string telephone = tbxNumTel.Text;
             string motDePasse = tbxMdp.Text;
+            string status = "actif";
+            string role = "Joueur";
 
             // Vérifier si tous les champs sont remplis
             if (string.IsNullOrEmpty(nom) || string.IsNullOrEmpty(prenom) || string.IsNullOrEmpty(pseudo) ||
@@ -50,24 +52,15 @@ namespace GestionParties_KevinFLPLM
             }
 
             // Valider l'adresse email (vous pouvez utiliser une expression régulière pour une validation plus poussée)
-            if (!IsValidEmail(email))
+            if (!db.IsValidEmail(email))
             {
                 MessageBox.Show("Adresse email invalide.");
                 return;
             }
-            string output = db.Inscription(nom, prenom, pseudo, email, telephone, motDePasse);
-            MessageBox.Show(output);
-        }
-        private bool IsValidEmail(string email)
-        {
-            try
+            else
             {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
+                string output = db.Inscription(nom, prenom, pseudo, email, telephone, motDePasse, status, role);
+                MessageBox.Show(output);
             }
         }
     }

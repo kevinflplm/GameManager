@@ -450,7 +450,7 @@
             Controls.Add(dgvListeUsers);
             MaximizeBox = false;
             Name = "FrmPanelAdmin";
-            Text = "FrmGstnUtilisateurs";
+            Text = "Panel Admin";
             Load += FrmGstnUtilisateurs_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListeUsers).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudInfo1).EndInit();

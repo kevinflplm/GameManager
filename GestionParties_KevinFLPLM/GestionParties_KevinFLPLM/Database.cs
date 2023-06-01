@@ -13,6 +13,11 @@ using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Fonctions
+
 namespace GestionParties_KevinFLPLM
 {
     internal class Database
@@ -42,10 +47,11 @@ namespace GestionParties_KevinFLPLM
                     string telephone = reader.GetString(3);
                     string email = reader.GetString(4);
                     string pseudo = reader.GetString(5);
+                    string mdp = reader.GetString(6);
                     string status = reader.GetString(7);
                     string role = reader.GetString(8);
           
-                    Utilisateur utilisateur = new Utilisateur(prenom, nom, telephone, email, pseudo, status, role);     
+                    Utilisateur utilisateur = new Utilisateur(prenom, nom, telephone, email, pseudo, status, role, mdp);     
                     userTab?.Add(utilisateur);
                 }
                 mySqlConnection?.Close();
@@ -57,15 +63,15 @@ namespace GestionParties_KevinFLPLM
             return userTab;
                     }
 
-        public string Inscription(string nom, string prenom, string pseudo, string email, string telephone, string motDePasse)
+        public string Inscription(string nom, string prenom, string pseudo, string email, string telephone, string motDePasse, string status, string role)
         {
 
             string str;
             try 
             { 
                 // Créer la commande SQL avec des paramètres pour éviter les attaques par injection SQL
-                string query = "INSERT INTO users (usr_first_name, usr_last_name, usr_phone, usr_email, usr_pseudo, usr_password) " +
-                        "VALUES (@Prenom, @Nom, @Telephone, @Email, @Pseudo, @MotDePasse)";
+                string query = "INSERT INTO users (usr_first_name, usr_last_name, usr_phone, usr_email, usr_pseudo, usr_password, usr_status, usr_role) " +
+                        "VALUES (@Prenom, @Nom, @Telephone, @Email, @Pseudo, @MotDePasse, @Status, @Role)";
                 mySqlConnection?.Open();
 
                 using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
@@ -77,11 +83,14 @@ namespace GestionParties_KevinFLPLM
                         command.Parameters.AddWithValue("@Email", email);
                         command.Parameters.AddWithValue("@Telephone", telephone);
                         command.Parameters.AddWithValue("@MotDePasse", motDePasse);
+                        command.Parameters.AddWithValue("@Status", status);
+                        command.Parameters.AddWithValue("@Role", role);
 
-                        // Exécuter la commande SQL
-                        command.ExecuteNonQuery();
+                    // Exécuter la commande SQL
+                    command.ExecuteNonQuery();
                 }
 
+                mySqlConnection?.Close();
                 // Afficher un message de succès
                 str = "Inscription réussie !";
             }
@@ -166,7 +175,7 @@ namespace GestionParties_KevinFLPLM
             {
 
                 mySqlConnection?.Open();
-                string updateQuery = "UPDATE games SET gme_name = @newName, gme_period = @newPeriod, gme_description = @newDesc, gme_image = @newImg, gme_min_players = @newMinPly, gme_max_players = @newMaxPly, gme_price = @newPrice, gme_mj_usr_id = @newMjId, gme_evt_id = @newEvtId" +
+                string updateQuery = "UPDATE games SET gme_name = @newName, gme_period = @newPeriod, gme_description = @newDesc, gme_image = @newImg, gme_min_players = @newMinPly, gme_max_players = @newMaxPly, gme_price = @newPrice" +
                     " WHERE gme_id = @gmeID";
                 MySqlCommand command = new MySqlCommand(updateQuery, mySqlConnection);
                 command.Parameters.AddWithValue("@newName", name);
@@ -176,8 +185,6 @@ namespace GestionParties_KevinFLPLM
                 command.Parameters.AddWithValue("@newMinPly", minPly);
                 command.Parameters.AddWithValue("@newMaxPly", maxPly);
                 command.Parameters.AddWithValue("@newPrice", price);
-                command.Parameters.AddWithValue("@newMjId", mjId);
-                command.Parameters.AddWithValue("@newEvtId", evtId);
                 command.Parameters.AddWithValue("@gmeID", gmeId);
                 command.ExecuteNonQuery();
                 mySqlConnection?.Close();
@@ -271,6 +278,41 @@ namespace GestionParties_KevinFLPLM
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void RemoveUser(int userId)
+        {
+            try
+            {
+                mySqlConnection?.Open();
+                string deleteQuery = "DELETE FROM users WHERE usr_id = @userId";
+                MySqlCommand command = new MySqlCommand(deleteQuery, mySqlConnection);
+                command.Parameters.AddWithValue("@userId", userId);
+                command.ExecuteNonQuery();
+                mySqlConnection?.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Vérifie si l'email est valide ou pas
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
 

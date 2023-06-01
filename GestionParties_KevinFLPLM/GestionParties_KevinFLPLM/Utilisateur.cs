@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace GestionParties_KevinFLPLM
 {
-    internal class Utilisateur
+    public class Utilisateur
     {
         private string _prenom;
         private string _nom;
         private string _telephone;
         private string _email;
         private string _pseudo;
+        private string _mdp;
         private string _status;
         private string _role;
 
-        public Utilisateur (string prenom, string nom, string telephone, string email, string pseudo, string status, string role)
-        { 
+        public Utilisateur (string prenom, string nom, string telephone, string email, string pseudo, string status, string role, string mdp)
+        {
             this._prenom = prenom;
             this._nom = nom;
             this._telephone = telephone;
             this._email = email;
             this._pseudo = pseudo;
+            this._mdp = mdp;
             this._status = status;
             this._role = role;
         }
@@ -34,5 +36,6 @@ namespace GestionParties_KevinFLPLM
         public string Pseudo { get => _pseudo; set => _pseudo = value; }
         public string Status { get => _status; set => _status = value; }
         public string Role { get => _role; set => _role = value; }
+        public string Mdp { get => _mdp; set => _mdp = value; }
     }
 }
