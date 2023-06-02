@@ -67,7 +67,7 @@ PO: Yves Juillerat
 ## Jour 7 22.05
 
 - Activités :
-  - Fonctionalitél 
+  - Fonctionalitées  
 
 - Problèmes rencontrés : 
   - 
