@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Class Utilisateur
+
 namespace GestionParties_KevinFLPLM
 {
     public class Utilisateur

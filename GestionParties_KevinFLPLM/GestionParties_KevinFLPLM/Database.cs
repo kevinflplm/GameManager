@@ -315,29 +315,5 @@ namespace GestionParties_KevinFLPLM
                 return false;
             }
         }
-
-        //public string GetInfoParties(string query)
-        //{
-        //    MySqlCommand mysqlCmd = new MySqlCommand(query, mySqlConnection);
-        //    mySqlConnection?.Open();
-        //    try
-        //    {
-
-        //        MySqlDataReader reader = mysqlCmd.ExecuteReader();
-        //        byte[] imageBytes = (byte[])reader["image"];
-
-        //        MemoryStream ms = new MemoryStream(imageBytes);
-        //        Image image = Image.FromStream(ms);
-
-        //        reader.Close();
-        //        mySqlConnection?.Close();
-
-        //        return image;
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //    }
-        //}
     }
 }

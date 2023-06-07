@@ -5,6 +5,11 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
+/// Auteur  : Kevin.flplm   
+/// Date    : 03.05.2023
+/// Projet  : Game Manager
+/// Détails : Program.cs
+
 namespace GestionParties_KevinFLPLM
 {
     static class Program
